@@ -14,19 +14,19 @@
   margin-top:18px;
 }
 .header__search{
-  flex-grow: 1;
+  flex: 1;
   display: flex;
-  height: 40px;
-  border-radius: 4px;
-  overflow: hidden;
-
+  align-items: center;
+  border-radius: 24px; 
 }
 .header__searchInput{
   height:12px;
   padding: 10px;
   border: none;
   width: 100%;
+  
 }
+
 .header__searchIcon{
   padding: 5px;
   height: 22px !important;
