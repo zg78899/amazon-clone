@@ -1,16 +1,64 @@
 import React from "react";
 import "./Home.css";
 import Product from "./Product";
+import "react-responsive-carousel/lib/styles/carousel.css";
+import { Carousel } from "react-responsive-carousel";
+import { uuid } from "uuid";
 
 function Home() {
+  const getConfigurableProps = () => ({
+    showArrows: true,
+    showStatus: false,
+    showIndicators: false,
+    infiniteLoop: true,
+    showThumbs: false,
+    useKeyboardArrows: true,
+    autoPlay: false,
+    stopOnHover: true,
+    swipeable: true,
+  });
+
   return (
     <div className="home">
       <div className="home__container">
-        <img
-          className="home__image"
-          src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonMusic/2020/ACQ/Gateway/HolidayNonPromo/DV5/US-EN_100120_HOLNonPromo_ACQ_GW_Hero_D_3000x1200_CV4_2._CB415751492_.jpg"
-          alt=""
-        />
+        <Carousel {...getConfigurableProps()}>
+          <img
+            className="home__image"
+            src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2020/HolidayDeals/Desktop/Fuji_TallHero_HolidayDeals_en_US_2x._CB414278671_.jpg"
+            alt=""
+          />
+          <img
+            className="home__image"
+            src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2020/Holiday/GiftGuide/Fuji_TallHero_GG_2_en_US_2x._CB412146952_.jpg"
+            alt=""
+          />
+          <img
+            className="home__image"
+            src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Hero/Fuji_TallHero_Computers_2x._CB432469748_.jpg"
+            alt=""
+          />
+          <img
+            className="home__image"
+            src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Hero/Fuji_TallHero_Toys_en_US_2x._CB431858162_.jpg"
+            alt=""
+          />
+          <img
+            className="home__image"
+            src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Hero/Fuji_TallHero_Home_v2_en_US_2x._CB429090087_.jpg"
+            alt=""
+          />
+          <img
+            className="home__image"
+            src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Hero/Fuji_TallHero_Beauty_v2_en_US_2x._CB429089928_.jpg"
+            alt=""
+          />
+          <img
+            className="home__image"
+            src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonMusic/2020/Events/Holiday/Gateway/US-EN_100220_3monthsfree_ACQ_GW_Hero_D_3000x1200_CV59._CB403490035_.jpg"
+            alt=""
+          />
+        </Carousel>
+
         <div className="home__row">
           <Product
             id="12321341"

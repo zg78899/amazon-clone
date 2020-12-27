@@ -7,6 +7,10 @@ import Checkout from "./Checkout";
 import Login from "./Login";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
+import Payment from "./Payment";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
 function App() {
   const [{}, dispatch] = useStateValue();
 
@@ -28,6 +32,7 @@ function App() {
       }
     });
   }, []);
+
   return (
     <Router>
       <div className="app">
@@ -38,6 +43,10 @@ function App() {
           <Route path="/checkout">
             <Header />
             <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Payment />
           </Route>
           <Route path="/">
             <Header />

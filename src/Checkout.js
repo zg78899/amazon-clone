@@ -3,6 +3,8 @@ import "./Checkout.css";
 import CheckoutProduct from "./CheckoutProduct";
 import { useStateValue } from "./StateProvider";
 import Subtotal from "./Subtotal";
+import FlipMove from "react-flip-move";
+import { v4 as uuidv4 } from "uuid";
 
 function Checkout() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -18,8 +20,10 @@ function Checkout() {
         <div>
           <h3>Hello,{user?.email}</h3>
           <h2 className="checkout__title">Your shopping Basket</h2>
+
           {basket.map((item) => (
             <CheckoutProduct
+              key={uuidv4()}
               id={item.id}
               title={item.title}
               image={item.image}

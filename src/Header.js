@@ -5,6 +5,7 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -17,12 +18,23 @@ function Header() {
   return (
     <div className="header">
       <Link to="/">
-        <img
-          className="header__logo"
-          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
-          alt="amazon logo"
-        />
+        <div className="hedaer__logoContainer">
+          <img
+            className="header__logo"
+            src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+            alt="amazon logo"
+          />
+        </div>
       </Link>
+      <div className="header__optionAddress">
+        <div className="header__option">
+          <span className="header__optionLineOne">Hello,</span>
+          <span className="header__optionlineTwo">
+            <LocationOnIcon className="location__logo" />
+            Select your address
+          </span>
+        </div>
+      </div>
       <div className="header__search">
         <input type="text" className="header__searchInput" />
         <SearchIcon className="header__searchIcon" />
@@ -30,7 +42,9 @@ function Header() {
       <div className="header__nav">
         <Link to={!user && "/login"}>
           <div className="header__option">
-            <span className="header__optionLineOne">Hello Guest</span>
+            <span className="header__optionLineOne">
+              Hello {!user ? `Guest` : user?.email}
+            </span>
             <span className="header__optionlineTwo">
               {user ? `Sign out` : `Sign In`}
             </span>
@@ -38,6 +52,7 @@ function Header() {
         </Link>
 
         <div onClick={handleAuthentication} className="header__option">
+          {/* user?.email */}
           <span className="header__optionLineOne">Returns</span>
           <span className="header__optionlineTwo">& Orders</span>
         </div>
@@ -46,7 +61,7 @@ function Header() {
           <span className="header__optionLineOne">Your</span>
           <span className="header__optionlineTwo">Prime</span>
         </div>
-        <Link to="checkout">
+        <Link to="/checkout">
           <div className="header__optionBasket">
             <ShoppingBasketIcon />
             <span className="header__optionLine Two header__basketCount">
