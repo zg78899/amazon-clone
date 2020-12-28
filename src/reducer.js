@@ -39,6 +39,11 @@ export const reducer = (state, action) => {
         ...state,
         user: action.user,
       };
+    case "EMPTY_BASKET":
+      return {
+        ...state,
+        baskey: [],
+      };
     default:
       return state;
   }

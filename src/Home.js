@@ -3,7 +3,6 @@ import "./Home.css";
 import Product from "./Product";
 import "react-responsive-carousel/lib/styles/carousel.css";
 import { Carousel } from "react-responsive-carousel";
-import { uuid } from "uuid";
 
 function Home() {
   const getConfigurableProps = () => ({
