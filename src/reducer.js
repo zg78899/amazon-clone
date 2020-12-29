@@ -14,6 +14,11 @@ export const reducer = (state, action) => {
         ...state,
         basket: [...state.basket, action.item],
       };
+      case "EMPTY_BASKET":
+        return {
+          ...state,
+          basket: [],
+        };
     case "REMOVE_FROM_BASKET":
       const index = state.basket.findIndex(
         (basketItem) => basketItem.id === action.id
@@ -39,11 +44,7 @@ export const reducer = (state, action) => {
         ...state,
         user: action.user,
       };
-    case "EMPTY_BASKET":
-      return {
-        ...state,
-        baskey: [],
-      };
+
     default:
       return state;
   }

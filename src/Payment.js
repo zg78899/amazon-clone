@@ -12,9 +12,10 @@ import { db } from "./firebase";
 
 
 function Payment() {
-  const history = useHistory();
+  
 
   const [{ basket, user }, dispatch] = useStateValue();
+  const history = useHistory();
 
   const [succeeded, setSucceeded] = useState(false);
   const [processing, setProcessing] = useState("");
@@ -30,32 +31,31 @@ function Payment() {
     const getClientSecret = async () => {
       const response = await axios({
         method: "post",
-        //stripe expects the total ina currencies subunits
         url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
       });
+      console.log('reponse data',response.data);
       setClientSecret(response.data.clientSecret);
-    };
+    }
     getClientSecret();
   }, [basket]);
 
   console.log("THE SECREST IS >>>", clientSecret);
   console.log('👱', user)
 
-  const handleSubmit = async(e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setProcessing(true);
 
     const payload = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
         },
-      })
-      .then(({ paymentIntent }) => {
-        // paymentInten = payment confirm
+      }).then(({ paymentIntent }) => {
 
         console.log('paymentIntent',paymentIntent);
 
-        db.collection('users')
+        db
+          .collection('users')
           .doc(user?.uid)
           .collection('orders')
           .doc(paymentIntent.id)

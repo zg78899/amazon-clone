@@ -15,6 +15,7 @@ function Header() {
       auth.signOut();
     }
   };
+
   return (
     <div className="header">
       <Link to="/">
@@ -26,6 +27,7 @@ function Header() {
           />
         </div>
       </Link>
+
       <div className="header__optionAddress">
         <div className="header__option">
           <span className="header__optionLineOne">Hello,</span>
@@ -35,13 +37,15 @@ function Header() {
           </span>
         </div>
       </div>
+
       <div className="header__search">
         <input type="text" className="header__searchInput" />
         <SearchIcon className="header__searchIcon" />
       </div>
+
       <div className="header__nav">
         <Link to={!user && "/login"}>
-          <div className="header__option">
+          <div onClick={handleAuthentication} className="header__option">
             <span className="header__optionLineOne">
               Hello {!user ? `Guest` : user?.email}
             </span>
@@ -52,8 +56,7 @@ function Header() {
         </Link>
         
         <Link to="/orders">
-        <div onClick={handleAuthentication} className="header__option">
-          {/* user?.email */}
+        <div className="header__option">
           <span className="header__optionLineOne">Returns</span>
           <span className="header__optionlineTwo">& Orders</span>
         </div>
@@ -63,6 +66,7 @@ function Header() {
           <span className="header__optionLineOne">Your</span>
           <span className="header__optionlineTwo">Prime</span>
         </div>
+        
         <Link to="/checkout">
           <div className="header__optionBasket">
             <ShoppingBasketIcon />
