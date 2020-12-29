@@ -5,8 +5,8 @@ import "./Login.css";
 
 function Login() {
   const history = useHistory();
-  const [email, setEmail] = useState(" ");
-  const [password, setPassword] = useState(" ");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const signIn = (e) => {
     e.preventDefault();
     auth

@@ -59,7 +59,7 @@ function App() {
               <Payment />
             </Elements>          
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Header />
             <Home />
           </Route>

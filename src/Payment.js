@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import {  CardElement, useElements, useStripe,  } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "./reducer";
-import axios from "./axios";
+import axios from './axios';
 import { db } from "./firebase";
 
 
@@ -33,7 +33,6 @@ function Payment() {
         method: "post",
         url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
       });
-      console.log('reponse data',response.data);
       setClientSecret(response.data.clientSecret);
     }
     getClientSecret();
@@ -50,10 +49,8 @@ function Payment() {
         payment_method: {
           card: elements.getElement(CardElement),
         },
-      }).then(({ paymentIntent }) => {
-
+      }).then( ({paymentIntent}) => {
         console.log('paymentIntent',paymentIntent);
-
         db
           .collection('users')
           .doc(user?.uid)
@@ -62,8 +59,8 @@ function Payment() {
           .set({
                   basket: basket,
                   amount: paymentIntent.amount,
-                  created: paymentIntent.created
-              })
+                  created:paymentIntent.created
+             });
 
         setSucceeded(true);
         setError(null);
@@ -146,9 +143,7 @@ function Payment() {
             </form>
           </div>
         </div>
-        {/* delivery section */}
-        {/* review items */}
-        {/* paymemt method*/}
+        
       </div>
     </div>
   );
